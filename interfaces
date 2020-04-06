@@ -1,0 +1,4 @@
+auto uptun
+iface uptun inet static
+address 45.45.0.1
+netmask 255.255.0.0
