@@ -2,6 +2,7 @@
 UPF_IP?=10.102.81.101
 MCC?=901
 MNC?=70
+OUT_INTF?=enp0s5
 
 images:
 	@echo "\033[32m----- Building docker image -----\033[0m"
