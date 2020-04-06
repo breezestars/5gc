@@ -55,6 +55,15 @@ test:
 	@echo "\033[32m----- The following is test result -----\033[0m"
 	echo paramater p=$(p)
 
+export:
+	docker save 5gc > 5gc-image.tar
+
+load:
+	docker load 5gc-image.tar
+
+install-docker-china:
+	curl -sSL http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -
+
 clear:
 	@echo "\033[32m----- Clear all environment -----\033[0m"
 # 	docker rmi 5gc
