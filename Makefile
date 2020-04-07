@@ -63,7 +63,11 @@ load:
 	docker load 5gc-image.tar
 
 install-docker-china:
-	curl -sSL http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh -
+	sudo apt-get install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+	sudo add-apt-repository "deb [arch=amd64] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
+	sudo apt-get update
+	sudo apt-get install -y docker-ce
 
 clear:
 	@echo "\033[32m----- Clear all environment -----\033[0m"
