@@ -68,6 +68,7 @@ install-docker-china:
 	sudo add-apt-repository "deb [arch=amd64] https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
 	sudo apt-get update
 	sudo apt-get install -y docker-ce
+	sudo usermod -G docker -a $(shell whoami)
 
 clear:
 	@echo "\033[32m----- Clear all environment -----\033[0m"
