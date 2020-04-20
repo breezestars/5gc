@@ -8,9 +8,9 @@ RUN apt-get update &&\
     go get -u -v "github.com/gorilla/mux" &&\
     go get -u -v "golang.org/x/net/http2" && \
     go get -u -v "golang.org/x/sys/unix" &&\
-    git clone https://bitbucket.org/nctu_5g/free5gc-stage-1.git free5gc
+    git clone https://bitbucket.org/nctu_5g/free5gc-stage-1.git 5gc
 
-WORKDIR /root/free5gc
+WORKDIR /root/5gc
 RUN autoreconf -iv &&\
     ./configure --prefix=`pwd`/install &&\
     make &&\
@@ -25,14 +25,14 @@ RUN autoreconf -iv &&\
     rm -rf /var/lib/apt/lists/*
 
 FROM node:8.17.0-stretch-slim
-COPY --from=builder /root/free5gc /root/free5gc
+COPY --from=builder /root/5gc /root/5gc
 WORKDIR /root
-RUN touch /root/free5gc/install/var/log/free5gc/free5gc.log && \
+RUN touch /root/5gc/install/var/log/free5gc/free5gc.log && \
     apt-get update &&\
     apt-get install -y mongodb curl vim iproute2 net-tools tmux bison libmongoc-dev libbson-dev libyaml-dev libsctp-dev &&\
     rm -rf /var/lib/apt/lists/*
 
-CMD /etc/init.d/mongodb start && tail -f /root/free5gc/install/var/log/free5gc/free5gc.log
+CMD /etc/init.d/mongodb start && tail -f /root/5gc/install/var/log/free5gc/free5gc.log
 
 
 
