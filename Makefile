@@ -3,10 +3,10 @@ SMF_IP:=$(shell yq r config.yaml ip.smf)
 HSS_IP:=$(shell yq r config.yaml ip.hss)
 PCRF_IP:=$(shell yq r config.yaml ip.pcrf)
 UPF_IP:=$(shell yq r config.yaml ip.upf)
-MCC?=901
-MNC?=70
-ISP_NAME:=Edgecore-5GC
-OUT_INTF?=enp0s5
+MCC?=$(shell yq r config.yaml plmn.mcc)
+MNC?=$(shell yq r config.yaml plmn.mnc)
+ISP_NAME:=$(shell yq r config.yaml isp.name)
+OUT_INTF?=$(shell yq r config.yaml interface.internet)
 
 images:
 	@echo "\033[32m----- Building docker image -----\033[0m"
