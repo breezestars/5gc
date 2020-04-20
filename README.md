@@ -65,6 +65,7 @@ docker tag breezestars/5gc:1.0 5gc:latest
 ### 設定 config.yaml 文件
 
 - AMF, HSS, SMF, PCRF, UPF 五個元件的 IP，並確定伺服器有在相關介面上設定好 IP
+  - 如果一台服務器上有多個元件共存，需為每一個元件各自配置一個 IP
 - PLMN：請注意與 IMSI 相符
 - ISP  name：運營商的名稱
 - Interface internet：UPF 元件對外出口網路介面名稱
@@ -74,9 +75,9 @@ docker tag breezestars/5gc:1.0 5gc:latest
 ```yaml
 ip:
   amf: 10.102.81.100
-  smf: 10.102.81.100
-  hss: 10.102.81.100
-  pcrf: 10.102.81.100
+  smf: 10.102.81.99
+  hss: 10.102.81.98
+  pcrf: 10.102.81.97
   upf: 10.102.81.101
 
 plmn:
@@ -142,7 +143,7 @@ make cli
 先移除之前的 5gc 容器
 
 ```bash
-docker rm 5gc
+docker rm -f 5gc
 ```
 
 接著依序從 **執行 5GC 容器** 開始執行即可
